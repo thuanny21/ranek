@@ -35,10 +35,8 @@
     ],
     "parserOptions": {
       "parser": "babel-eslint"
-    },
-    "rules": {
-      "vue/html-quotes": "double"
     }
+    
   },
   "browserslist": [
     "> 1%",
