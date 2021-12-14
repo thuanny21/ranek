@@ -1,52 +1,50 @@
 <template>
-    <p>Lista de Produtos </p>
+    <section>
+      <h2>Adicionar Produto</h2>
+      <ProdutoAdicionar/>
+      <h2>Seus Produtos</h2>
+      <transition-group v-if="usuario_produtos" name="list" tag="ul">
+        <li v-for="(produto, index) in usuario_produtos" :key="index">
+          <ProdutoItem :produto="produto">  
+            <p>{{produto.descricao}}</p>
+          </ProdutoItem>       
+        </li>
+      </transition-group>
+    </section>
 </template>
 
 <script>
+import ProdutoAdicionar from '@/components/ProdutoAdicionar.vue';
+import ProdutoItem from '@/components/ProdutoItem.vue';
+import { mapState, mapActions } from 'vuex'
+
+
 export default {
-    
+    name: "UsuarioProdutos",
+    components: {
+      ProdutoAdicionar,
+      ProdutoItem
+    },
+   
+    computed: {
+      ...mapState(["login", "usuario", 'usuario_produtos'])
+    },
+    methods: {
+      ...mapActions(["getUsuarioProdutos"])
+    },
+    watch: {
+      login() {
+        this.getUsuarioProdutos();
+      }
+    },
+    created() {
+      if (this.login) {
+        this.getUsuarioProdutos();
+      }      
+    }
 }
 </script>
 
 <style scoped>
-.usuario {
-  display: grid;
-  grid-template-columns: minmax(140px, 200px) 1fr;
-  max-width: 900px;
-  margin: 40px auto;
-  grid-gap: 30px;
-  padding: 20px;
-}
 
-@media screen and (max-width: 500px) {
-  .usuario {
-    grid-template-columns: 1fr;
-    margin: 0px auto;
-  }
-}
-
-.sidenav a,
-.sidenav button {
-  padding: 10px;
-  display: block;
-  background: #f4f7fc;
-  margin-bottom: 10px;
-  border-radius: 4px;
-}
-
-.sidenav a.router-link-exact-active,
-.sidenav a:hover,
-.sidenav button:hover {
-  background: #87f;
-  color: #fff;
-}
-
-.sidenav button {
-  border: none;
-  width: 100%;
-  font-size: 1rem;
-  text-align: left;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  cursor: pointer;
-}
 </style>
