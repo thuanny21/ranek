@@ -23,13 +23,14 @@ export default {
                 nome: "",
                 preco:"",
                 descricao: "",
-                fotos: null
+                fotos: null,
+                vendido: "false"
             }
         }
     },
     methods: {
         formatarProduto() {
-            this.produto.usuario_id = this.$store.state.usuario.id;
+            this.produto.usuario_id = this.$store.state.usuario.id;           
         },
         adicionarProduto() {
             this.formatarProduto();
