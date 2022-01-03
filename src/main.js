@@ -4,9 +4,11 @@ import router from './router'
 import store from './store'
 import PaginaCarregando from '@/components/PaginaCarregando.vue'
 
+
 Vue.config.productionTip = false;
 
 Vue.component("PaginaCarregando", PaginaCarregando);
+
 
 Vue.filter("numeroPreco", valor => {
     valor = Number(valor);
