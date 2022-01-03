@@ -12,7 +12,7 @@ import UsuarioEditar from '../views/usuario/UsuarioEditar.vue'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -35,6 +35,9 @@ export default new VueRouter({
     {
       path: "/usuario",      
       component: Usuario,
+      meta: {
+        login: true,
+      },
       children: [
         {
           path: "",
@@ -63,3 +66,16 @@ export default new VueRouter({
     return window.scrollTo({ top: 0, behavior: "smooth" });
   }
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.login)) {
+    if(!window.localStorage.token) {
+      next("/login")
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+export default router;
