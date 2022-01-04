@@ -34,6 +34,9 @@ export default {
             this.$store.dispatch("deslogarUsuario");
             this.$router.push("/login")
         }
+    },
+    created() {
+      document.title = "Usuário";
     }
 }
 </script>

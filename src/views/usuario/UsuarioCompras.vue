@@ -8,6 +8,7 @@
                 </ProdutoItem>
             </div>
         </div>
+        <PaginaCarregando v-else/>
     </section>
 </template>
 
@@ -44,6 +45,7 @@ export default {
         if(this.login) {
             this.getCompras();
         }
+        document.title = "Usuário | Compras"
     }
 }
 </script>

@@ -16,7 +16,10 @@ export default {
   components: {
     ProdutosBuscar,
     ProdutosLista
-  }  
+  },
+  created() {
+      document.title = "Login";
+  }
 };
 </script>
 

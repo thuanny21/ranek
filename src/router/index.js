@@ -8,6 +8,7 @@ import UsuarioProdutos from '../views/usuario/UsuarioProdutos.vue'
 import UsuarioVendas from '../views/usuario/UsuarioVendas.vue'
 import UsuarioCompras from '../views/usuario/UsuarioCompras.vue'
 import UsuarioEditar from '../views/usuario/UsuarioEditar.vue'
+import PaginaNaoEncontrada from '../views/PaginaNaoEncontrada.vue'
 
 
 Vue.use(VueRouter)
@@ -16,6 +17,10 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: "*",
+      component: PaginaNaoEncontrada
+    },
     {
       path: "/",
       name: "home",
